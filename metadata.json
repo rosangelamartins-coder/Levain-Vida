@@ -1,0 +1,6 @@
+{
+  "name": "Levain Sourdough Baking Companion",
+  "description": "An artisanal digital guide for sourdough beginners. Manage starters, calculate baker ratios, run timers, and explore step-by-step fermentation recipes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
