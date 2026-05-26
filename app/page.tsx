@@ -780,7 +780,7 @@ export default function SourdoughCompanion() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
             {/* Language Selector */}
             <div className="flex items-center gap-1 bg-[#f5f2ee] p-1 rounded-full border border-[#e8e2d9] shadow-inner">
               <button
@@ -802,7 +802,7 @@ export default function SourdoughCompanion() {
             </div>
 
             {/* Core App Navigation Tabs */}
-            <nav id="navbar-tabs" className="flex items-center gap-1 bg-[#f5f2ee] p-1 rounded-full border border-[#e8e2d9] overflow-x-auto max-w-full">
+            <nav id="navbar-tabs" className="flex flex-wrap items-center justify-center gap-1 bg-[#f5f2ee] p-1.5 md:p-1 rounded-2xl md:rounded-full border border-[#e8e2d9] w-full md:w-auto">
               <button
                 id="tab-starter-btn"
                 onClick={() => setActiveTab("starter")}
