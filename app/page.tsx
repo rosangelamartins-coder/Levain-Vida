@@ -1316,7 +1316,7 @@ export default function SourdoughCompanion() {
                     <div className="flex items-center justify-between mt-2 pt-1">
                       <span className="text-[10px] text-[#8c7e6d]">{t.formulaLabel} (26 × 3) - Room - Flour - Levain</span>
                       <span className="font-mono text-xs font-bold bg-[#5c4033] text-[#fcfaf7] px-3 py-1 rounded-full border border-[#5c4033]">
-                        {idealWaterTemp}ºC (~{Math.round((idealWaterTemp * 9/5) + 32)}ºF)
+                        {idealWaterTemp}ºC ({Math.round((idealWaterTemp * 9/5) + 32)}ºF)
                       </span>
                     </div>
                   </div>
