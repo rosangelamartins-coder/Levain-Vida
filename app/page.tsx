@@ -767,22 +767,44 @@ export default function SourdoughCompanion() {
     <div className="min-h-screen bg-[#fcfaf7] text-[#4a3f35] font-sans antialiased overflow-x-hidden pb-12">
       {/* Header Banner - High contrast editorial style */}
       <header id="header-nav" className="w-full border-b border-[#e8e2d9] bg-[#fcfaf7]/90 backdrop-blur-md sticky top-0 z-50 px-4 md:px-8 py-4 transition-all duration-300">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-[#5c4033] text-[#fcfaf7] rounded-full shadow-sm">
-              <Wheat className="w-6 h-6" />
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center justify-between w-full md:w-auto gap-3">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-[#5c4033] text-[#fcfaf7] rounded-full shadow-sm">
+                <Wheat className="w-5 h-5 md:w-6 md:h-6" />
+              </div>
+              <div>
+                <h1 className="text-lg md:text-xl font-bold tracking-tight font-serif text-[#5c4033] italic flex items-center gap-2">
+                  {t.appName} <span className="text-[9px] md:text-[10px] font-sans font-semibold py-0.5 px-1.5 md:px-2 bg-[#f5f2ee] text-[#a68a64] border border-[#e8e2d9] rounded-full uppercase tracking-wider">{t.appSub}</span>
+                </h1>
+                <p className="text-[10px] md:text-xs text-[#8c7e6d] hidden sm:block">{t.appDesc}</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight font-serif text-[#5c4033] italic flex items-center gap-2">
-                {t.appName} <span className="text-[10px] font-sans font-semibold py-0.5 px-2 bg-[#f5f2ee] text-[#a68a64] border border-[#e8e2d9] rounded-full uppercase tracking-wider">{t.appSub}</span>
-              </h1>
-              <p className="text-xs text-[#8c7e6d]">{t.appDesc}</p>
+
+            {/* Language Selector (mobile only) */}
+            <div className="flex md:hidden items-center gap-1 bg-[#f5f2ee] p-1 rounded-full border border-[#e8e2d9] shadow-inner shrink-0">
+              <button
+                onClick={() => setLang("en")}
+                className={`px-2.5 py-0.5 text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
+                  lang === "en" ? "bg-[#5c4033] text-[#fcfaf7] shadow-sm font-extrabold" : "text-[#8c7e6d] hover:text-[#5c4033]"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLang("pt")}
+                className={`px-2.5 py-0.5 text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
+                  lang === "pt" ? "bg-[#5c4033] text-[#fcfaf7] shadow-sm font-extrabold" : "text-[#8c7e6d] hover:text-[#5c4033]"
+                }`}
+              >
+                PT
+              </button>
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
-            {/* Language Selector */}
-            <div className="flex items-center gap-1 bg-[#f5f2ee] p-1 rounded-full border border-[#e8e2d9] shadow-inner">
+            {/* Language Selector (desktop only) */}
+            <div className="hidden md:flex items-center gap-1 bg-[#f5f2ee] p-1 rounded-full border border-[#e8e2d9] shadow-inner">
               <button
                 onClick={() => setLang("en")}
                 className={`px-3 py-1 text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
@@ -801,8 +823,8 @@ export default function SourdoughCompanion() {
               </button>
             </div>
 
-            {/* Core App Navigation Tabs */}
-            <nav id="navbar-tabs" className="flex flex-wrap items-center justify-center gap-1 bg-[#f5f2ee] p-1.5 md:p-1 rounded-2xl md:rounded-full border border-[#e8e2d9] w-full md:w-auto">
+            {/* Core App Navigation Tabs - Scrollable on mobile, beautiful, no wrapping */}
+            <nav id="navbar-tabs" className="flex items-center gap-1 bg-[#f5f2ee] p-1 rounded-full border border-[#e8e2d9] overflow-x-auto flex-nowrap w-full md:w-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <button
                 id="tab-starter-btn"
                 onClick={() => setActiveTab("starter")}
@@ -1294,7 +1316,7 @@ export default function SourdoughCompanion() {
                     <div className="flex items-center justify-between mt-2 pt-1">
                       <span className="text-[10px] text-[#8c7e6d]">{t.formulaLabel} (26 × 3) - Room - Flour - Levain</span>
                       <span className="font-mono text-xs font-bold bg-[#5c4033] text-[#fcfaf7] px-3 py-1 rounded-full border border-[#5c4033]">
-                        {idealWaterTemp}ºC ({~Math.round((idealWaterTemp * 9/5) + 32)}ºF)
+                        {idealWaterTemp}ºC (~{Math.round((idealWaterTemp * 9/5) + 32)}ºF)
                       </span>
                     </div>
                   </div>
