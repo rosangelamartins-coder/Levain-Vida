@@ -371,6 +371,102 @@ const RECIPES_PT: Recipe[] = [
   }
 ];
 
+// Curated Sourdough Recipes in Spanish
+const RECIPES_ES: Recipe[] = [
+  {
+    id: "beginner-loaf",
+    name: "Pan Rústico Tradicional (Principiante)",
+    description: "El punto de partida perfecto para el clásico pan rústico de levadura salvaje. Una menor hidratación hace que la masa sea más firme y fácil de amasar, crear tensión y cortar.",
+    difficulty: "Beginner",
+    hydration: 68,
+    levain: 20,
+    salt: 2,
+    wholeWheat: 10,
+    ryeOrFlourType: "Harina Blanca Molida en Piedra",
+    bulkHours: 4.5,
+    bakeTimeMins: 45,
+    instructions: [
+      "Autólisis: Mezcle la harina blanca, la harina integral y el agua. Deje reposar por 45 minutos para activar la red natural de gluten.",
+      "Inoculación: Añada su masa madre activa y burbujeante (levain) e incorpórela con cuidado a la masa. Deje reposar por 30 minutos.",
+      "Añadir Sal: Espolvoree la sal y 10g de agua extra, apriete con la punta de los dedos y doble la masa para sellar la humedad.",
+      "Fermentación en Bloque: Realice 4 series de pliegues (stretch-and-fold) cada 30 minutos. Deje reposar la masa a temperatura ambiente hasta que crezca entre un 40-50% en volumen.",
+      "Preformado: Vuelque la masa sobre la superficie de trabajo sin harina. Forme suavemente una bola suelta (boule). Deje reposar al aire por 20 minutos para que cree una ligera película o piel.",
+      "Formado Final: Espolvoree harina, voltee la masa, doble los lados hacia el centro y enrolle firmemente de arriba a abajo como un batard estructurado o boule ajustado.",
+      "Segunda Fermentación (Retardo en Frío): Transfiera a un cesto de fermentación enharinado (banneton), cubra y guarde en el refrigerador (3-5°C) durante 14-16 horas para una fermentación láctica lenta.",
+      "Horneado: Precaliente su olla holandesa (dutch oven) a 250°C durante 1 hora. Invierta la hogaza sobre papel para hornear, realice un corte rápido en un ángulo de 45° (¡la greña!) y hornee tapado durante 20 minutos, y luego destapado durante 20-25 minutos."
+    ]
+  },
+  {
+    id: "tartine-style",
+    name: "Sourdough de Alveolado Abierto Artesanal",
+    description: "Inspirado en el tradicional método de alta hidratación de San Francisco. Desarrolla un alveolado salvaje y brillante, y una corteza profundamente caramelizada y crujiente.",
+    difficulty: "Intermediate",
+    hydration: 76,
+    levain: 15,
+    salt: 2.1,
+    wholeWheat: 15,
+    ryeOrFlourType: "Harina de Fuerza Premium y Mezcla de Centeno Oscuro",
+    bulkHours: 5,
+    bakeTimeMins: 45,
+    instructions: [
+      "Autólisis: Mezcle las harinas con el agua. Deje reposar por 1 hora en un lugar cálido (26°C) para garantizar una hidratación completa.",
+      "Inoculación: Frote delicadamente el prefermento por la masa utilizando la técnica Rubaud durante 5 minutos. Deje reposar por 30 minutos.",
+      "Añadir Sal: Distribuya sal marina fina con el resto del agua tibia. Trabaje la masa hasta que quede sedosa y blanda.",
+      "Pliegues y Trabajo: Realice pliegues cada 30 minutos durante las primeras 2 horas (4 series de coil folds). Mantenga la temperatura de la masa a 25°C.",
+      "Fermentación: Deje reposar sin tocar hasta que la masa quede ligera, aireada y en forma de domo, con pequeñas burbujas de dióxido de carbono visibles en la superficie.",
+      "Formado: Deslice la masa suavemente sobre la superficie. Doble en forma de sobre formando un elegante batard de alta tensión.",
+      "Fermentación en Frío: Coloque en bannetons dentro de una bolsa de plástico limpia por 18 horas a 4°C para madurar completamente los ácidos orgánicos.",
+      "Horneado: Voltee sobre papel para hornear, realice cortes rápidos con cuchilla y hornee en olla de hierro fundido muy caliente (245°C) con dos cubitos de hielo bajo el papel para obtener máximo vapor."
+    ]
+  },
+  {
+    id: "seeded-rye",
+    name: "Trigo Heritage Sourdough con Semillas Tostadas",
+    description: "Semillas de calabaza, girasol y sésamo tostadas e hidratadas, incorporadas en una masa de trigo antiguo y centeno. Un aroma rústico riquísimo con un gran valor nutricional.",
+    difficulty: "Advanced",
+    hydration: 74,
+    levain: 20,
+    salt: 2.2,
+    wholeWheat: 20,
+    ryeOrFlourType: "Harina de Trigo Khorasan y Centeno Medio",
+    bulkHours: 5.5,
+    bakeTimeMins: 50,
+    instructions: [
+      "Tostado e Hidratación: Tueste 60g de girasol, 40g de calabaza y 30g de sésamo. Deje enfriar e hidrate con 100g de agua tibia por 2 horas. Escurra el exceso antes de mezclar.",
+      "Autólisis: Mezcle las harinas rústicas con el agua. Repose por 1 hora.",
+      "Mezclar prefermento y sal: Añada su levain maduro y la sal a la masa autolizada. Amase con pliegues por 5 minutos.",
+      "Laminación e Inclusiones: En el primer pliegue, estire la masa fina en la superficie húmeda y distribuya las semillas tostadas uniformemente. Enrolle de vuelta.",
+      "Fermentación en Bloque: Deje fermentar en un lugar templado. Realice 3 series de coil folds suaves para mantener la estructura sin romper el gluten.",
+      "Formado y Reposo: Forme una bola firme. Pase la superficie externa por un paño húmedo y luego ruede en sementes de sésamo crudas.",
+      "Crecimiento en Frío: Refrigere por 15 horas para intensificar las digestiones simbióticas de levaduras y bacterias.",
+      "Horneado: Hornee a 240°C con máximo vapor durante 25 minutos. Reduzca la temperatura a 210°C, abra ligeramente la puerta del horno y deje otros 25 minutos para dorar."
+    ]
+  },
+  {
+    id: "sour-brioche",
+    name: "Golden Sourdough French Brioche",
+    description: "Una receta de brioche francés extremadamente rica y enriquecida con huevo y mantequilla fresca, fermentada de forma 100% natural. Suave como una nube con un toque sutil de acidez.",
+    difficulty: "Advanced",
+    hydration: 52,
+    levain: 30,
+    salt: 1.8,
+    wholeWheat: 0,
+    ryeOrFlourType: "Harina Francesa Fuerte Saborizada T55",
+    bulkHours: 6,
+    bakeTimeMins: 35,
+    instructions: [
+      "Levain Duro: Alimente el prefermento al 55% de hidratación para crear colonias de levaduras adaptadas a entornos de alta azúcar y grasa.",
+      "Mezcla Inicial: Mezcle harina de fuerza, levain activo, azúcar, leche tibia y huevos orgánicos frescos. Amase por 10 minutos hasta que esté suave.",
+      "Infiltración de Mantequilla: Incorpore la mantequilla sin sal ablandada (50% del peso de la harina) poco a poco, una cucharada a la vez, amasando constantemente (15 minutos).",
+      "Fermentación Inicial: Deje descansar a 26°C por 4 horas y luego transfiera a la nevera para endurecer la mantequilla y facilitar el formado.",
+      "Porciones y Trenzado: Divida en 3 cilindros iguales. Trence suavemente en la superficie fría y coloque en un molde untado de brioche/pan.",
+      "Segunda Fermentación: Deje crecer a temperatura ambiente (24°C) de 5 a 7 horas hasta duplicar su tamaño y chacoalhar como gelatina.",
+      "Pincelar y Cobertura: Pincele con yema y leche fresca, disperse azúcar perlado por encima de la cúpula.",
+      "Horneado: Hornee a 180°C durante 35 minutos hasta que el centro marque 90°C. Deje enfriar por completo antes de rebanar."
+    ]
+  }
+];
+
 const TRANSLATIONS = {
   en: {
     appName: "Levain & Life",
@@ -651,6 +747,146 @@ const TRANSLATIONS = {
     footerCopyright: "Hub do Padeiro Companheiro de Fermento Natural • Técnicas Tradicionais",
     hours: "horas",
     around: "Aproximadamente"
+  },
+  es: {
+    appName: "Levain & Vida",
+    appSub: "Iniciación",
+    appDesc: "Tu Guía para la Fermentación Lenta y Natural de Pan con Masa Madre",
+    tabStarter: "Lab de Masa Madre",
+    tabCalculator: "Calculadora",
+    tabRecipes: "Recetas Ancestrales",
+    tabTimeline: "Cronograma Activo",
+    tabAssistant: "Mentor de Panadería",
+    
+    // TAB 1
+    starterHeading: "Dando Vida a tu Cultivo de Levadura Salvaje",
+    starterJourney: "Jornada de Iniciación",
+    starterWild: "Cultivo Silvestre",
+    starterSub: "A diferencia de los panaderos industriales que utilizan levadura comercial en sobre, la panificación con masa madre se basa en un cultivo simbiótico de Saccharomyces exiguus (levadura salvaje) y Lactobacillus sanfranciscensis (bacteria láctica), que prosperan de forma natural en el salvado de harinas de grano entero molidas en piedra.",
+    milestoneTitle: "Hitos del Crecimiento de la Masa Madre (Días 1 a 7)",
+    milestoneDays: [
+      {
+        title: "Días 1 y 2: Hidratación Orgánica",
+        desc: "Mezcle 50g de harina de centeno integral con 50g de agua tibia (28°C) en un frasco de vidrio alto. Cubra ligeramente. Aparecerán algunas burbujas el Día 2, provocadas por la bacteria Leuconostoc; ¡aún no es fermentación de levadura real!"
+      },
+      {
+        title: "Días 3 y 4: Fase de Acidificación",
+        desc: "Se acumulan los ácidos. Las levaduras de las cáscaras prosperan cuando las bacterias disminuyen el pH. Descarte todo menos 50g de masa madre, alimente con 50g de harina blanca de trigo de fuerza y 50g de agua templada. Huele un poco a fruta madura."
+      },
+      {
+        title: "Días 5 y 6: Equilibrio Simbiótico",
+        desc: "El crecimiento comienza a ocurrir de manera predecible entre 6 y 9 horas después de alimentar. El aroma a fruta se convierte en notas limpias de alcohol. Continúe con las alimentaciones diarias cada 24 horas."
+      },
+      {
+        title: "Dia 7+: Actividad Madura y Lista para Hornear",
+        desc: "La masa madre duplica o triplica su volumen de 4 a 6 horas después de alimentarla. Desarrolla un aroma robusto, limpio y ácido. ¡Está oficialmente lista para inocular la masa y hornear!"
+      }
+    ],
+    masterTipTitle: "💡 Consejo del Maestro: La Prueba de Flotación",
+    masterTipDesc: "Deje caer una cucharadita de su levain en su punto máximo en un vaso de agua fría. Si flota, significa que retiene suficientes burbujas de gas carbónico y está maduro y listo para estructurar su pan.",
+    
+    // TAB 1 simulator
+    activePhase: "Fase Activa",
+    birthStarter: "El Ciclo de tu Masa Madre",
+    simulatorSub: "Monitorea cómo la temperatura ambiente y otros factores regulan el ciclo de vida de tu fermento natural. ¡Ajusta los controles para descubrir el punto óptimo!",
+    glassTriple: "- Triplicado",
+    glassDouble: "- Duplicado (Pico)",
+    glassFeed: "- Línea Base 1x",
+    bakeActive: "FERMENTO EN EL PICO PARA HORNEAR",
+    hoursFedLabel: "Horas desde la Alimentación:",
+    kitchenTempLabel: "Temp. de la Cocina:",
+    feedRatioLabel: "Proporción de Alimentación:",
+    cultureAgeLabel: "Edad del Cultivo:",
+    currentPhaseLabel: "Fase Actual",
+    expectedPeakLabel: "Hora de Pico Previsto",
+    aromaLabel: "Aroma y Aspecto",
+    acidityLabel: "Nivel de Acidez",
+    masterAdviceLabel: "Consejo del Maestro:",
+    calculateFlourCTA: "Paso 2: Calcular Harinas y Proporciones",
+
+    // TAB 2 Calculator
+    calcHeading: "Porcentajes del Panadero y Calculadora de Escala",
+    calcSub: "Los panaderos definen cada ingrediente en relación con el peso de la harina seca (100%). ¡Utiliza este cálculo preciso para escalar tu masa de forma consistente!",
+    desiredFlourLabel: "Peso Deseado de Harina Seca:",
+    yieldLabel: "Rendimiento Estimado:",
+    goodFor: "suficiente para cerca de",
+    standardBoules: "hogazas redondas (boules) rústicas de tamaño estándar",
+    waterHydrationLabel: "Porcentaje de Hidratación de Agua:",
+    levainPctLabel: "Proporción de Masa Madre (% con respecto a la harina):",
+    levainPctSub: "Un porcentaje mayor acelera la fermentación en bloque inicial, pero aporta acidez láctica más rápidamente.",
+    saltPctLabel: "Porcentaje de Sal (% con respecto a la harina):",
+    saltPctSub: "Esencial para el desarrollo de la red de gluten. El estándar para pan rústico artesanal es del 2.0%.",
+    localRoomTempLabel: "Temperatura Ambiente de la Cocina:",
+    stiff: "(Masa firme)",
+    ciabattaStyle: "(Estilo ciabatta fluido)",
+    beginnerHydrationText: "Principiante: masa firme y fácil formado",
+    intermediateHydrationText: "Intermedio: alveolado rústico moderadamente abierto",
+    advancedHydrationText: "Avanzado: masa húmeda con gran retención de gas",
+    receiptTitle: "Ficha de la Fórmula Artesanal",
+    receiptSub: "Tus Ingredientes y Proporciones Dinámicas",
+    breadFlourWeightLabel: "Peso de la Harina de Trigo",
+    breadFlourWeightDesc: "Harina blanca de alta proteína (100%)",
+    purifiedWaterWeightLabel: "Peso del Agua Filtrada",
+    purifiedWaterWeightDesc: "Hidratación de Agua Objetivo",
+    activeMatureLevainLabel: "Masa Madre Activa y Madura",
+    activeMatureLevainDesc: "Alimentada en proporción 1:1:1",
+    fineSeaSaltLabel: "Sal Marina Fina",
+    fineSeaSaltDesc: "Sal fina de panadería artesanal",
+    waterTempGuidanceTitle: "Temperatura de Agua Recomendada",
+    waterTempGuidanceDesc: "Para alcanzar la temperatura óptima de fermentación de 25°C - 26°C, el agua de amasado debe estar a:",
+    formulaLabel: "Fórmula:",
+    totalDoughWeightLabel: "Peso Total de la Masa:",
+    applyFormulaCTA: "Aplicar Fórmula al Cronograma de Fermentación Activa",
+
+    // TAB 3 Recipes
+    archiveHeading: "Archivo Rústico de Panificación",
+    archiveTitle: "Fórmulas Clásicas de Masa Madre Natural",
+    archiveSub: "Recetas tradicionales de fermentación lenta adaptadas a las proporciones más célebres de la panadería artesanal.",
+    viewSteps: "Ver Pasos",
+    grainBlend: "Mezcla de granos",
+    wheatLabel: "Trigo Integral",
+    recipeInstructionsTitle: "Instrucciones Paso a Paso:",
+    recipeInstructionsSub: "Lee las instrucciones y cárgalas directamente en tu cronograma de seguimiento activo.",
+    loadIntoCompanionCTA: "Cargar en el Cronograma de Fermentación Activo",
+
+    // TAB 4 Companion
+    timelineHeading: "Seguimiento Activo",
+    timelineTitle: "Línea de Tiempo de Fermentación Activa",
+    timelineSub: "Haz clic en cada paso durante tu sesión de horneado para verificar procedimientos, controlar duraciones de reposos y registrar tu progreso.",
+    stepLabel: "Paso",
+    activeStepFocus: "Foco en el Paso Activo",
+    timerLabel: "Temporizador de Pliegues (Stretch & Fold)",
+    cycleLabel: "Ciclo de 30 minutos",
+    timerSub: "Intervalo sugerido entre pliegues para relajar la red de gluten de la masa.",
+    pauseBtn: "Pausar",
+    startTimerBtn: "Iniciar",
+    skipBtn: "Omitir",
+    perfectDoughLabel: "Indicadores de Red de Gluten Perfecta:",
+    checklist1: "Red de gluten elástica que se estira sin romperse con facilidad (prueba de la ventana)",
+    checklist2: "Burbujas finas de CO2 formándose bajo el domo de la masa",
+    checklist3: "Masa ligera y aireada al tacto antes de volcarla sobre la bancada",
+    didYouKnowTitle: "¿Sabías que?",
+    didYouKnowDesc: "El pan con masa madre natural tiene un índice glucémico de alrededor de 54 (frente a más de 71 del pan blanco de molde industrial). ¡La fermentación prolongada ralentiza la digestión del almidón, mejorando la respuesta a la insulina!",
+
+    // TAB 5 Assistant
+    assistantHeading: "Mentoría de Fermentación Natural",
+    activeBakerStatus: "Inteligencia Artificial Activa",
+    clearConversation: "Limpiar Chat",
+    placeholderUser: "Tú (Principiante)",
+    placeholderMaster: "Maestro del Sourdough",
+    inputPlaceholder: "Pregunta al Maestro: '¿Por qué mi pan salió plano?', '¿Para qué sirve la autólisis?'",
+    beginnerFaqTitle: "Dudas Frecuentes de Panaderos",
+    beginnerFaqSub: "Toca cualquiera de las dudas más comunes para preguntar al Maestro panadero de inmediato:",
+    faq1: "👃 ¿MI MASA MADRE huele a acetona?",
+    faq2: "🍞 ¿Cómo lograr que el pan cree una greña ('ear') bonita?",
+    faq3: "💦 ¿La masa está demasiado pegajosa y aguada?",
+    faq4: "⚠️ ¿Diferencia entre sobrefermentado y subfermentado?",
+    faq5: "🌾 ¿Cuál es la mejor harina para alimentar la masa madre?",
+
+    footerQuote: "“Las levaduras salvajes no piden prisa ni alabanza, solo harina, agua y paciencia templada.”",
+    footerCopyright: "Hub del Panadero Compañero de Masa Madre • Técnicas Tradicionales",
+    hours: "horas",
+    around: "Aproximadamente"
   }
 };
 
@@ -658,13 +894,13 @@ export default function SourdoughCompanion() {
   // Tabs: 'starter' | 'calculator' | 'recipes' | 'timeline' | 'assistant'
   const [activeTab, setActiveTab] = useState<string>("starter");
   const [mounted, setMounted] = useState<boolean>(false);
-  const [lang, setLang] = useState<"en" | "pt">("pt"); // Default to portuguese per user's locale/intent
+  const [lang, setLang] = useState<"en" | "pt" | "es">("pt"); // Default to portuguese per user's locale/intent
 
   // Shorthand translations helper
   const t = TRANSLATIONS[lang];
 
   // Dynamically resolve recipes list based on language
-  const RECIPES = lang === "en" ? RECIPES_EN : RECIPES_PT;
+  const RECIPES = lang === "en" ? RECIPES_EN : (lang === "es" ? RECIPES_ES : RECIPES_PT);
 
   useEffect(() => {
     setMounted(true);
@@ -708,32 +944,32 @@ export default function SourdoughCompanion() {
       currentRiseFactor = postPeakHeight;
     }
 
-    // Determine status & sensory notes inside simulated state in EN / PT
-    let status = lang === "en" ? "Rising" : "Crescendo";
-    let aroma = lang === "en" ? "Milky, mild cereal flour, slight sugar" : "Cereal de leite suave, doçura leve de farinha";
-    let actionTip = lang === "en" ? "Yeast cell counts are dividing. Not ready to bake yet." : "Leveduras se dividindo. Ainda não está pronto para panificação.";
-    let acidity = lang === "en" ? "Low: Sweet & doughy" : "Baixo: Doce e pastoso";
+    // Determine status & sensory notes inside simulated state in EN / PT / ES
+    let status = lang === "en" ? "Rising" : (lang === "es" ? "Creciendo" : "Crescendo");
+    let aroma = lang === "en" ? "Milky, mild cereal flour, slight sugar" : (lang === "es" ? "Cereal de leche suave, ligero dulzor de harina" : "Cereal de leite suave, doçura leve de farinha");
+    let actionTip = lang === "en" ? "Yeast cell counts are dividing. Not ready to bake yet." : (lang === "es" ? "La población de levadura se está dividiendo. Aún no está lista para hornear." : "Leveduras se dividindo. Ainda não está pronto para panificação.");
+    let acidity = lang === "en" ? "Low: Sweet & doughy" : (lang === "es" ? "Bajo: Dulce y harinoso" : "Baixo: Doce e pastoso");
 
     if (ageDays < 4) {
-      status = lang === "en" ? "Dormant (Young)" : "Adormecido (Inativo)";
-      aroma = lang === "en" ? "Flat, wet flour, slight yeast activity" : "Farinha úmida neutra, atividade biológica mínima";
-      actionTip = lang === "en" ? "Starter is too young. Keep feeding daily! Do not bake yet." : "Muito jovem. Continue alimentando diariamente! Evite assar pães por enquanto.";
-      acidity = lang === "en" ? "Zero sourness" : "Ausência de acidez";
+      status = lang === "en" ? "Dormant (Young)" : (lang === "es" ? "Inactivo (Joven)" : "Adormecido (Inativo)");
+      aroma = lang === "en" ? "Flat, wet flour, slight yeast activity" : (lang === "es" ? "Firme, harina húmeda neutra, mínima actividad" : "Farinha úmida neutra, atividade biológica mínima");
+      actionTip = lang === "en" ? "Starter is too young. Keep feeding daily! Do not bake yet." : (lang === "es" ? "La masa madre es demasiado joven. ¡Sigue alimentándola diariamente! No hornees todavía." : "Muito jovem. Continue alimentando diariamente! Evite assar pães por enquanto.");
+      acidity = lang === "en" ? "Zero sourness" : (lang === "es" ? "Ausencia de acidez" : "Ausência de acidez");
     } else if (Math.abs(simulatorHour - peak) < 1.0) {
-      status = lang === "en" ? "Primal Peak Window (Perfect!)" : "Pico de Fermentação de Ouro (Seu pão perfeito!)";
-      aroma = lang === "en" ? "Fruity, yogurt-like, white wine ferment, sweet apples" : "Frutado marcante, maçã verde fermentada, espumante frutoso de maçã";
-      actionTip = lang === "en" ? "Yeast cells are saturated with oxygen. Perfect elasticity! Mix your dough right now." : "Células no pico energético e de oxigênio. Elasticidade ideal! Adicione seu fermento à massa agora mesmo.";
-      acidity = lang === "en" ? "Optimal: Smooth lactic acidity" : "Ideal: Acidez láctica aveludada, sem traço forte de vinagre";
+      status = lang === "en" ? "Primal Peak Window (Perfect!)" : (lang === "es" ? "Pico Dorado de Fermentación (¡Pan perfecto!)" : "Pico de Fermentação de Ouro (Seu pão perfeito!)");
+      aroma = lang === "en" ? "Fruity, yogurt-like, white wine ferment, sweet apples" : (lang === "es" ? "Frutado intenso, manzana fermentada, aroma a yogur y vino blanco" : "Frutado marcante, maçã verde fermentada, espumante frutoso de maçã");
+      actionTip = lang === "en" ? "Yeast cells are saturated with oxygen. Perfect elasticity! Mix your dough right now." : (lang === "es" ? "Células saturadas de energía y oxígeno. ¡Elasticidad perfecta! Incorpora tu levadura a la masa ahora mismo." : "Células no pico energético e de oxigênio. Elasticidade ideal! Adicione seu fermento à massa agora mesmo.");
+      acidity = lang === "en" ? "Optimal: Smooth lactic acidity" : (lang === "es" ? "Óptimo: Acidez láctica suave" : "Ideal: Acidez láctica aveludada, sem traço forte de vinagre");
     } else if (simulatorHour < peak) {
-      status = lang === "en" ? "Active & Rising" : "Ativo e Crescendo";
-      aroma = lang === "en" ? "Tangy, fresh dough, mild yogurt" : "Azedinho suave, iogurte natural fresco, farinha úmida";
-      actionTip = lang === "en" ? "Rising nicely. Wait a little longer for yeast population to reach maximum expansion." : "Crescendo bem. Aguarde um pouco mais até acumular quantidade máxima de gases e atingir o topo de altura.";
-      acidity = lang === "en" ? "Developing" : "Em desenvolvimento";
+      status = lang === "en" ? "Active & Rising" : (lang === "es" ? "Activo y Creciendo" : "Ativo e Crescendo");
+      aroma = lang === "en" ? "Tangy, fresh dough, mild yogurt" : (lang === "es" ? "Ácido suave, fermento natural fresco, yogur natural" : "Azedinho suave, iogurte natural fresco, farinha úmida");
+      actionTip = lang === "en" ? "Rising nicely. Wait a little longer for yeast population to reach maximum expansion." : (lang === "es" ? "Creciendo muy bien. Espera un poco más para que los gases alcancen su máxima expansión." : "Crescendo bem. Aguarde um pouco mais até acumular quantidade máxima de gases e atingir o topo de altura.");
+      acidity = lang === "en" ? "Developing" : (lang === "es" ? "En desarrollo" : "Em desenvolvimento");
     } else {
-      status = lang === "en" ? "Hungry / Falling" : "Faminto / Descendo";
-      aroma = lang === "en" ? "Sharp beer, strong vinegar, light paint/acetone backtones" : "Álcool de cerveja forte, vinagre concentrado, traços leves de acetona";
-      actionTip = lang === "en" ? "Passed the peak window. Yeast is food-depleted. Feed again soon, or store in fridge." : "Passou do pico. Sem comida, as leveduras estão exaustas. Alimente-o de novo ou reserve na geladeira.";
-      acidity = lang === "en" ? "High: Sharp acetic acid (highly sour)" : "Forte: Ácido acético agudo (bastante azedo)";
+      status = lang === "en" ? "Hungry / Falling" : (lang === "es" ? "Hambriento / Descendiendo" : "Faminto / Descendo");
+      aroma = lang === "en" ? "Sharp beer, strong vinegar, light paint/acetone backtones" : (lang === "es" ? "Álcool fuerte de cerveza, vinagre de manzana, ligeros tonos de acetona" : "Álcool de cerveja forte, vinagre concentrado, traços leves de acetona");
+      actionTip = lang === "en" ? "Passed the peak window. Yeast is food-depleted. Feed again soon, or store in fridge." : (lang === "es" ? "Pasó de su punto máximo. Las levaduras no tienen alimento. Aliméntala de nuevo pronto o guárdala en la nevera." : "Passou do pico. Sem comida, as leveduras estão exaustas. Alimente-o de novo ou reserve na geladeira.");
+      acidity = lang === "en" ? "High: Sharp acetic acid (highly sour)" : (lang === "es" ? "Alto: Ácido acético punzante e intenso" : "Forte: Ácido acético agudo (bastante azedo)");
     }
 
     return {
@@ -847,7 +1083,9 @@ export default function SourdoughCompanion() {
             role: "assistant",
             content: lang === "en"
               ? "Greetings, young baker! I am the Levain Sourdough Master. 🍞✨\n\nNatural slow fermentation is a beautiful dialogue between flour, water, temperature, and wild yeasts. Today are we going to feed your Levain or start a recipe?"
-              : "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Hoje vamos alimentar o seu Levain ou vamos iniciar alguma receita?"
+              : lang === "es"
+                ? "¡Saludos, joven maestro panadero! Yo soy el Maestro de la Masa Madre de Fermentación Natural. 🍞✨\n\nLa fermentación natural lenta es un hermoso diálogo entre harina, agua pura, temperatura ambiente y levaduras salvajes. ¿Hoy vamos a alimentar tu Levain o vamos a iniciar alguna receta?"
+                : "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Hoje vamos alimentar o seu Levain ou vamos iniciar alguma receita?"
           }
         ];
       }
@@ -936,6 +1174,14 @@ export default function SourdoughCompanion() {
               >
                 PT
               </button>
+              <button
+                onClick={() => setLang("es")}
+                className={`px-2.5 py-0.5 text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
+                  lang === "es" ? "bg-[#5c4033] text-[#fcfaf7] shadow-sm font-extrabold" : "text-[#8c7e6d] hover:text-[#5c4033]"
+                }`}
+              >
+                ES
+              </button>
             </div>
           </div>
 
@@ -957,6 +1203,14 @@ export default function SourdoughCompanion() {
                 }`}
               >
                 PT
+              </button>
+              <button
+                onClick={() => setLang("es")}
+                className={`px-3 py-1 text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
+                  lang === "es" ? "bg-[#5c4033] text-[#fcfaf7] shadow-sm font-extrabold" : "text-[#8c7e6d] hover:text-[#5c4033]"
+                }`}
+              >
+                ES
               </button>
             </div>
 
