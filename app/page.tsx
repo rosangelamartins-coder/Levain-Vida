@@ -23,8 +23,145 @@ import {
   Clock,
   Check,
   RotateCcw,
-  Volume2
+  Volume2,
+  Calendar
 } from "lucide-react";
+
+// Sourdough Markdown and Google Calendar link renderer
+const SourdoughMarkdownRenderer = ({ content }: { content: string }) => {
+  const lines = content.split('\n');
+  
+  return (
+    <div className="space-y-1.5 text-[11px] leading-relaxed font-sans text-[#4a3f35]">
+      {lines.map((line, lineIdx) => {
+        const isHeader3 = line.startsWith('### ');
+        const isHeader2 = line.startsWith('## ');
+        const isBullet = line.trim().startsWith('* ') || line.trim().startsWith('- ') || line.trim().startsWith('• ');
+        
+        let displayLine = line;
+        if (isHeader3) displayLine = line.substring(4);
+        else if (isHeader2) displayLine = line.substring(3);
+        else if (isBullet) {
+          const idx = line.indexOf('* ') !== -1 
+            ? line.indexOf('* ') 
+            : line.indexOf('- ') !== -1 
+              ? line.indexOf('- ') 
+              : line.indexOf('• ');
+          displayLine = line.substring(idx + 2);
+        }
+        
+        const parsedNodes = parseInlineMarkdown(displayLine);
+        
+        if (isHeader3) {
+          return <h4 key={lineIdx} className="text-xs font-serif font-bold text-[#5c4033] mt-2 mb-0.5">{parsedNodes}</h4>;
+        }
+        if (isHeader2) {
+          return <h3 key={lineIdx} className="text-sm font-serif font-bold text-[#5c4033] mt-3 mb-1">{parsedNodes}</h3>;
+        }
+        if (isBullet) {
+          return (
+            <div key={lineIdx} className="flex items-start gap-1.5 pl-1.5 my-0.5">
+              <span className="text-[#a68a64] shrink-0 font-bold">•</span>
+              <span className="flex-1 text-[#4a3f35] font-medium">{parsedNodes}</span>
+            </div>
+          );
+        }
+        
+        if (line.trim() === '') {
+          return <div key={lineIdx} className="h-1.5" />;
+        }
+        
+        return <p key={lineIdx} className="font-medium text-[#4a3f35]">{parsedNodes}</p>;
+      })}
+    </div>
+  );
+};
+
+function parseInlineMarkdown(text: string): React.ReactNode[] {
+  if (!text) return [];
+
+  const parts: React.ReactNode[] = [];
+  let currentKey = 0;
+
+  // Match: [Text](URL)
+  const linkRegex = /\[(.*?)\]\((.*?)\)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    const matchIndex = match.index;
+    const [fullMatch, linkText, linkUrl] = match;
+
+    if (matchIndex > lastIndex) {
+      const precedingText = text.substring(lastIndex, matchIndex);
+      parts.push(...parseBold(precedingText, currentKey));
+      currentKey += 10;
+    }
+
+    const isGoogleCalendar = linkUrl.includes("calendar.google.com");
+    if (isGoogleCalendar) {
+      parts.push(
+        <a
+          key={`link-${currentKey}`}
+          href={linkUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 my-1 bg-[#5c4033] hover:bg-[#4a342a] text-[#fcfaf7] font-semibold rounded-lg text-[10px] tracking-wide transition-all uppercase shadow-sm cursor-pointer border border-[#4a342a]/20 shrink-0 font-sans leading-none"
+        >
+          <Calendar className="w-3.5 h-3.5 text-[#fcfaf7]" />
+          <span>{linkText.replace(/📅\s*/g, '')}</span>
+        </a>
+      );
+    } else {
+      parts.push(
+        <a
+          key={`link-${currentKey}`}
+          href={linkUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#a68a64] font-bold underline hover:text-[#5c4033] cursor-pointer"
+        >
+          {linkText}
+        </a>
+      );
+    }
+    currentKey++;
+    lastIndex = linkRegex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    const remainingText = text.substring(lastIndex);
+    parts.push(...parseBold(remainingText, currentKey));
+  }
+
+  return parts;
+}
+
+function parseBold(text: string, baseKey: number): React.ReactNode[] {
+  const boldRegex = /\*\*(.*?)\*\*/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match;
+  let currentKey = baseKey;
+
+  while ((match = boldRegex.exec(text)) !== null) {
+    const matchIndex = match.index;
+    const [fullMatch, boldText] = match;
+
+    if (matchIndex > lastIndex) {
+      parts.push(<span key={currentKey++}>{text.substring(lastIndex, matchIndex)}</span>);
+    }
+
+    parts.push(<strong key={currentKey++} className="font-bold text-[#5c4033]">{boldText}</strong>);
+    lastIndex = boldRegex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(<span key={currentKey++}>{text.substring(lastIndex)}</span>);
+  }
+
+  return parts;
+}
 
 // Types for baking recipes
 interface Recipe {
@@ -1748,7 +1885,11 @@ export default function SourdoughCompanion() {
                         <p className={`font-sans font-bold text-[10px] uppercase tracking-wider mb-1.5 ${m.role === "user" ? "text-white/70" : "text-[#8c7e6d]"}`}>
                           {m.role === "user" ? t.placeholderUser : t.placeholderMaster}
                         </p>
-                        <div className="whitespace-pre-wrap">{m.content}</div>
+                        {m.role === "user" ? (
+                          <div className="whitespace-pre-wrap">{m.content}</div>
+                        ) : (
+                          <SourdoughMarkdownRenderer content={m.content} />
+                        )}
                       </div>
                     </div>
                   ))}
