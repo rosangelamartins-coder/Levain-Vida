@@ -697,7 +697,7 @@ export default function SourdoughCompanion() {
   const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
     {
       role: "assistant",
-      content: "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Pergunte-me qualquer dúvida!"
+      content: "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Hoje vamos alimentar o seu Levain ou vamos iniciar alguma receita?"
     }
   ]);
 
@@ -709,8 +709,8 @@ export default function SourdoughCompanion() {
           {
             role: "assistant",
             content: lang === "en"
-              ? "Greetings, young baker! I am the Levain Sourdough Master. 🍞✨\n\nNatural slow fermentation is a beautiful dialogue between flour, water, temperature, and wild yeasts. Have you encountered any issues with your starter rise, gluten elasticity, dough gas retention, or baking results? Ask me anything!"
-              : "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Pergunte-me qualquer dúvida!"
+              ? "Greetings, young baker! I am the Levain Sourdough Master. 🍞✨\n\nNatural slow fermentation is a beautiful dialogue between flour, water, temperature, and wild yeasts. Today are we going to feed your Levain or start a recipe?"
+              : "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Hoje vamos alimentar o seu Levain ou vamos iniciar alguma receita?"
           }
         ];
       }
@@ -1718,8 +1718,8 @@ export default function SourdoughCompanion() {
                           {
                             role: "assistant",
                             content: lang === "en"
-                              ? "Greetings, young baker! I am the Levain Sourdough Master. 🍞✨\n\nNatural slow fermentation is a beautiful dialogue between flour, water, temperature, and wild yeasts. Have you encountered any issues with your starter rise, gluten elasticity, dough gas retention, or baking results? Ask me anything!"
-                              : "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Pergunte-me qualquer dúvida!"
+                              ? "Greetings, young baker! I am the Levain Sourdough Master. 🍞✨\n\nNatural slow fermentation is a beautiful dialogue between flour, water, temperature, and wild yeasts. Today are we going to feed your Levain or start a recipe?"
+                              : "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Hoje vamos alimentar o seu Levain ou vamos iniciar alguma receita?"
                           }
                         ]);
                       }}
