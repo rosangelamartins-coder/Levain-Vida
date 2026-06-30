@@ -24,7 +24,10 @@ import {
   Check,
   RotateCcw,
   Volume2,
-  Calendar
+  Calendar,
+  Paperclip,
+  UploadCloud,
+  X
 } from "lucide-react";
 
 // Sourdough Markdown and Google Calendar link renderer
@@ -595,6 +598,9 @@ const TRANSLATIONS = {
     placeholderUser: "You (Beginner)",
     placeholderMaster: "Sourdough Master",
     inputPlaceholder: "Ask Master: 'My loaf came out flat and dense...', 'What does autolyse do?'",
+    uploadButton: "Attach Photo of Your Sourdough/Bake",
+    dragAndDropPrompt: "Drop your photo here to attach!",
+    imageAttached: "Image attached",
     beginnerFaqTitle: "Beginner FAQs (Tap to Ask)",
     beginnerFaqSub: "Tap any common sourdough pitfall below to immediately ask the Master for organic baking troubleshooting remedies:",
     faq1: "👃 STARTER smells like acetone?",
@@ -735,6 +741,9 @@ const TRANSLATIONS = {
     placeholderUser: "Você (Iniciante)",
     placeholderMaster: "Mestre Sourdough",
     inputPlaceholder: "Pergunte ao Mestre: 'Meu pão saiu achatado e pesado...', 'Para que serve a autólise?'",
+    uploadButton: "Anexar foto da sua produção/levain",
+    dragAndDropPrompt: "Solte sua foto aqui para anexar!",
+    imageAttached: "Imagem anexada",
     beginnerFaqTitle: "Perguntas Frequentes de Padeiros",
     beginnerFaqSub: "Clique em uma das dúvidas mais comuns abaixo para receber as dicas de correção do Mestre na hora:",
     faq1: "👃 MEU FERMENTO cheira a acetona?",
@@ -875,6 +884,9 @@ const TRANSLATIONS = {
     placeholderUser: "Tú (Principiante)",
     placeholderMaster: "Maestro del Sourdough",
     inputPlaceholder: "Pregunta al Maestro: '¿Por qué mi pan salió plano?', '¿Para qué sirve la autólisis?'",
+    uploadButton: "Adjuntar foto de tu producción/levain",
+    dragAndDropPrompt: "¡Suelta tu foto aquí para adjuntar!",
+    imageAttached: "Imagen adjunta",
     beginnerFaqTitle: "Dudas Frecuentes de Panaderos",
     beginnerFaqSub: "Toca cualquiera de las dudas más comunes para preguntar al Maestro panadero de inmediato:",
     faq1: "👃 ¿MI MASA MADRE huele a acetona?",
@@ -1067,12 +1079,58 @@ export default function SourdoughCompanion() {
   };
 
   // --- TAB 5: AI COMPANION CHAT STATE ---
-  const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string }>>([
+  interface ChatMessage {
+    role: "user" | "assistant";
+    content: string;
+    image?: {
+      name: string;
+      type: string;
+      base64: string;
+    };
+  }
+
+  const [messages, setMessages] = useState<Array<ChatMessage>>([
     {
       role: "assistant",
       content: "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Hoje vamos alimentar o seu Levain ou vamos iniciar alguma receita?"
     }
   ]);
+
+  const [attachedImage, setAttachedImage] = useState<{
+    name: string;
+    type: string;
+    base64: string;
+  } | null>(null);
+
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const processFile = (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      alert(lang === "en" ? "Only image files are supported." : (lang === "es" ? "Solo se admiten archivos de imagen." : "Apenas arquivos de imagem são suportados."));
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target?.result) {
+        setAttachedImage({
+          name: file.name,
+          type: file.type,
+          base64: event.target.result as string,
+        });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    processFile(file);
+    if (e.target) {
+      e.target.value = ""; // Reset input so the same file can be uploaded again
+    }
+  };
 
   // Synchronize first message on language change
   useEffect(() => {
@@ -1104,12 +1162,20 @@ export default function SourdoughCompanion() {
 
   const handleSendMessage = async (customPrompt?: string) => {
     const textToSend = customPrompt || inputValue;
-    if (!textToSend.trim()) return;
+    if (!textToSend.trim() && !attachedImage) return;
+
+    // Capture currently attached image and clear state
+    const currentAttachedImage = attachedImage;
+    setAttachedImage(null);
 
     // Add user message
-    const updatedMessages: Array<{ role: "user" | "assistant"; content: string }> = [
+    const updatedMessages: Array<ChatMessage> = [
       ...messages,
-      { role: "user", content: textToSend }
+      {
+        role: "user",
+        content: textToSend,
+        ...(currentAttachedImage ? { image: currentAttachedImage } : {})
+      }
     ];
     setMessages(updatedMessages);
     setInputValue("");
@@ -2086,7 +2152,35 @@ export default function SourdoughCompanion() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-8"
             >
               {/* Left Column: Sourdough Master Chat Interface */}
-              <div id="ai-chat-card" className="lg:col-span-8 bg-white p-8 rounded-3xl border border-[#e8e2d9] shadow-sm flex flex-col justify-between h-[550px]">
+              <div
+                id="ai-chat-card"
+                className="lg:col-span-8 bg-white p-8 rounded-3xl border border-[#e8e2d9] shadow-sm flex flex-col justify-between h-[550px] relative overflow-hidden"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  setIsDragging(false);
+                  const file = e.dataTransfer.files?.[0];
+                  if (file) {
+                    processFile(file);
+                  }
+                }}
+              >
+                {/* Drag and Drop visual overlay */}
+                {isDragging && (
+                  <div className="absolute inset-0 bg-[#5c4033]/15 backdrop-blur-[2px] border-2 border-dashed border-[#5c4033] rounded-3xl flex items-center justify-center z-50 pointer-events-none">
+                    <div className="bg-[#fcfaf7] px-6 py-4 rounded-2xl shadow-md border border-[#e8e2d9] flex flex-col items-center gap-2">
+                      <UploadCloud className="w-8 h-8 text-[#5c4033] animate-bounce" />
+                      <span className="text-xs font-bold font-serif text-[#5c4033]">
+                        {t.dragAndDropPrompt}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 <div>
                   <div className="flex items-center justify-between border-b border-[#e8e2d9] pb-4">
                     <div className="flex items-center gap-3">
@@ -2113,6 +2207,7 @@ export default function SourdoughCompanion() {
                               : "Saudações, jovem mestre padeiro! Eu sou o Mestre do Sourdough de Fermentação Natural. 🍞✨\n\nA fermentação natural lenta é um lindo diálogo entre farinha, água pura, temperatura ambiente e leveduras selvagens. Hoje vamos alimentar o seu Levain ou vamos iniciar alguma receita?"
                           }
                         ]);
+                        setAttachedImage(null);
                       }}
                       className="p-2 text-[#8c7e6d] hover:bg-[#f5f2ee] rounded-full hover:text-[#5c4033] font-sans text-xs flex items-center gap-1.5 transition-colors font-bold uppercase tracking-wider cursor-pointer"
                     >
@@ -2139,6 +2234,18 @@ export default function SourdoughCompanion() {
                         <p className={`font-sans font-bold text-[10px] uppercase tracking-wider mb-1.5 ${m.role === "user" ? "text-white/70" : "text-[#8c7e6d]"}`}>
                           {m.role === "user" ? t.placeholderUser : t.placeholderMaster}
                         </p>
+                        
+                        {/* Display message image if present */}
+                        {m.image && (
+                          <div className="mb-2 mt-1 max-w-xs overflow-hidden rounded-xl border border-[#e8e2d9]/10 shadow-sm bg-black/5">
+                            <img
+                              src={m.image.base64}
+                              alt={m.image.name}
+                              className="max-h-48 object-cover w-full rounded-xl"
+                            />
+                          </div>
+                        )}
+
                         {m.role === "user" ? (
                           <div className="whitespace-pre-wrap">{m.content}</div>
                         ) : (
@@ -2165,8 +2272,52 @@ export default function SourdoughCompanion() {
                   <div ref={chatEndRef} />
                 </div>
 
+                {/* Local image preview block before the input area */}
+                {attachedImage && (
+                  <div className="mb-3 flex items-center justify-between p-2.5 bg-[#f5f2ee] rounded-xl border border-[#e8e2d9] animate-fade-in">
+                    <div className="flex items-center gap-3 overflow-hidden">
+                      <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-[#e8e2d9] bg-white">
+                        <img
+                          src={attachedImage.base64}
+                          alt={attachedImage.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="overflow-hidden">
+                        <p className="text-[11px] font-bold text-[#5c4033] truncate">{attachedImage.name}</p>
+                        <p className="text-[9px] text-[#8c7e6d] font-semibold">{t.imageAttached}</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setAttachedImage(null)}
+                      className="p-1.5 hover:bg-[#e8e2d9] rounded-full text-[#c2410c] hover:text-[#9a3412] transition-colors cursor-pointer"
+                      title={lang === "en" ? "Remove" : (lang === "es" ? "Eliminar" : "Remover")}
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
+
                 {/* Bottom message input field */}
                 <div className="flex gap-2">
+                  <button
+                    type="button"
+                    id="attach-file-btn"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="p-4 bg-[#f5f2ee] hover:bg-[#e8e2d9] text-[#5c4033] border border-[#e8e2d9] rounded-xl transition-colors shadow-sm shrink-0 flex items-center justify-center cursor-pointer"
+                    title={t.uploadButton}
+                    disabled={isAiLoading}
+                  >
+                    <Paperclip className="w-4 h-4" />
+                  </button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
                   <input
                     id="ai-text-input-field"
                     type="text"

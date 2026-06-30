@@ -76,25 +76,43 @@ You support two custom scheduling flows:
 
 Keep your answers warm, master-artisanal, trilingual, friendly, and fully professional styled! Ensure your response is in the active language of the conversation: Portuguese if the user spoke in Portuguese, Spanish if in Spanish, or English if in English.`;
 
-    const chat = ai.chats.create({
+    // Map our messages to the standard Gemini contents format for multi-turn multimodal conversation
+    const contents = messages.map((m: any) => {
+      const parts: any[] = [];
+      
+      // If there's an attached image/file, add the inlineData part
+      if (m.image) {
+        let base64Data = m.image.base64;
+        if (base64Data.includes(";base64,")) {
+          base64Data = base64Data.split(";base64,").pop() || "";
+        }
+        parts.push({
+          inlineData: {
+            mimeType: m.image.type,
+            data: base64Data,
+          },
+        });
+      }
+
+      // Add the text content part. It's always best to have a text part in a content block.
+      // If content is empty, provide a fallback.
+      const textVal = m.content?.trim() || (m.image ? "Avalie esta foto da minha produção." : "");
+      parts.push({ text: textVal });
+      
+      return {
+        role: m.role === "user" ? "user" : "model",
+        parts,
+      };
+    });
+
+    const response = await ai.models.generateContent({
       model: "gemini-3.5-flash",
+      contents,
       config: {
         systemInstruction,
         temperature: 0.7,
       },
     });
-
-    // Send the last message in context. To simulate continuous conversation, 
-    // we can pass previous exchange context in the system prompt or feed previous messages if supported,
-    // or simply inject history as a custom-formatted single message input.
-    // Let's feed history in formatting so the model has the exact context.
-    const historyContext = messages.slice(0, -1).map((m: any) => `${m.role === 'user' ? 'Beginner' : 'Bake Master'}: ${m.content}`).join("\n");
-    const currentMsg = messages[messages.length - 1].content;
-    const finalPrompt = historyContext 
-      ? `Here is our conversation history:\n${historyContext}\n\nBeginner current question: ${currentMsg}`
-      : currentMsg;
-
-    const response = await chat.sendMessage({ message: finalPrompt });
 
     return NextResponse.json({ text: response.text });
   } catch (error: any) {
